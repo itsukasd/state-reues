@@ -1,0 +1,12 @@
+driver.get("http://wfh/admin/login.php")
+driver.set_window_size(1550, 830)
+driver.find_element(By.ID, "username").click()
+driver.find_element(By.ID, "password").send_keys("admin123")
+driver.find_element(By.ID, "username").send_keys("admin")
+driver.find_element(By.CSS_SELECTOR, ".btn").click()
+driver.find_element(By.LINK_TEXT, "Attendance").click()
+driver.find_element(By.CSS_SELECTOR, ".form-group > .btn").click()#14
+driver.find_element(By.CSS_SELECTOR, "input:nth-child(1)").click()
+driver.find_element(By.CSS_SELECTOR, "input:nth-child(1)").send_keys("test")
+driver.find_element(By.CSS_SELECTOR, "input:nth-child(1)").send_keys(Keys.ENTER)
+driver.find_element(By.ID, "dropdownMenuButton1").click()
