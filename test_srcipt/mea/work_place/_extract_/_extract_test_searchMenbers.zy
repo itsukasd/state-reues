@@ -1,0 +1,7 @@
+driver.get("http://mea/")
+driver.find_element(By.ID, "identifiant_connexion").send_keys("admin")
+driver.find_element(By.ID, "password_connexion").send_keys("admin")
+driver.find_element(By.ID, "bouton_connexion").click()
+time.sleep(0.5)
+driver.find_element(By.CSS_SELECTOR, "input").click()
+driver.find_element(By.CSS_SELECTOR, "input").send_keys("test1")

@@ -1,0 +1,13 @@
+driver.get("http://mea/")
+driver.find_element(By.ID, "identifiant_connexion").send_keys("admin")
+driver.find_element(By.ID, "password_connexion").send_keys("admin")
+driver.find_element(By.ID, "bouton_connexion").click()
+time.sleep(0.5)
+driver.find_element(By.CSS_SELECTOR, ".arrow-middle-r").click()#20
+time.sleep(0.5)
+driver.find_element(By.CSS_SELECTOR, "#lien_animaux > td:nth-child(2)").click()
+driver.find_element(By.CSS_SELECTOR, ".fa-plus").click()
+driver.find_element(By.ID, "nom").send_keys("test")
+driver.find_element(By.ID, "race").send_keys("test")
+driver.find_element(By.ID, "date_naissance").send_keys("1")
+driver.find_element(By.ID, "bouton_animal_fermer").click()
