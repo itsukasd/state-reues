@@ -1,0 +1,69 @@
+class TreeNode:
+    context: list of context
+    children: list of TreeNode
+
+    construct function TreeNode(context)
+        node.context = context
+        node.children = []
+
+class PrefixTree:
+    root: TreeNode
+
+    construct function PrefixTree()
+        tree.root = addRoot()
+
+    function addRoot() return node
+        node = new TreeNode()
+        return node
+
+    function compare(node: TreeNode, context: string) returns index
+        """
+        比较一个树节点和一个测试用例的内容是否有公共前缀。
+        如果测试用例的内容是树节点的子集，返回 True；
+        如果测试用例的内容和树节点的内容完全没有公共前缀，返回 False。
+        如果测试用例的内容和树节点的内容有公共前缀，返回公共前缀的位置。
+        """
+        index = 0
+        while index < len(node.context) and index < len(context):
+            if node.context[index] != context[index]:
+                break
+            index = index + 1
+
+        if index == len(node.context):
+            # node 和 context 完全相同 或 node 包含 context
+            return -1
+        elif index == len(node.context):
+            # node 是 context 的前缀
+            return index
+        else:
+            # node 和 context 没有公共前缀
+            return -2
+
+    function insert(context: string)
+        """
+        将一个测试用例插入到前缀树中。
+        """
+        current_node = root
+        while True:
+            index = compare(current_node, context)
+            if index == -1:
+                # context 和 current_node 完全相同或被包含，不需要插入
+                return
+            elif index == -2:
+                # context 和 current_node 没有公共前缀，创建新的子节点
+                new_node = new TreeNode()
+                new_node.context = context[index:]
+                current_node.children.append(new_node)
+                return
+            else:
+                # context 是 current_node 的前缀，继续遍历子节点
+                for child_node in current_node.children:
+                    if child_node.context[0] == context[index]:
+                        current_node = child_node
+                        break
+                else:
+                    # 没有找到与 context[index] 相等的子节点，创建新的子节点
+                    new_node = new TreeNode()
+                    new_node.context = context[index:]
+                    current_node.children.append(new_node)
+                    return

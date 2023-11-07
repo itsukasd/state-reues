@@ -1,0 +1,14 @@
+pre_hd=driver.current_window_handle
+# always use duplicate page, previous handle need to reserve
+win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F2, 0)
+# time.sleep(1)
+handles[index]=None
+while(handles[index] is None):
+    for window_handle in driver.window_handles:
+    #if exist window handle not in dict, it's new duplicate window
+        if window_handle not in handles.values() and window_handle != pre_hd:
+            handles[index]=window_handle
+driver.switch_to.window(pre_hd)
+#ensure change success
+while(driver.current_window_handle == pre_hd):
+    break
